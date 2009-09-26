@@ -1,0 +1,20 @@
+Import("env")
+
+penv = env.Clone()
+penv.Append(LIBS=["zlib1"])
+penv.Append(CPPDEFINES=["PNG_NO_MMX_CODE", "PNG_BUILD_DLL", "ZLIB_DLL", "_CRT_SECURE_NO_WARNINGS"])
+
+src = Split("""example.c png.c pngerror.c pnggccrd.c pngget.c pngmem.c
+pngpread.c pngread.c pngrio.c pngrtran.c pngrutil.c pngset.c
+pngtrans.c pngvcrd.c pngwio.c pngwrite.c pngwtran.c pngwutil.c""")
+
+src.append("scripts\pngw32.def")
+png = penv.SharedLibrary("png", source=src)
+
+ptenv = penv.Clone()
+ptenv.Prepend(LIBS=["png"])
+pngtest = ptenv.Program("pngtest", source=["pngtest.c"])
+
+penv.Install(env["libdir"], png)
+penv.Install(env["includedir"], ["png.h", "pngconf.h"])
+penv.Install(env["bindir"], pngtest)
