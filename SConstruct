@@ -16,3 +16,4 @@ env.Prepend(CPPPATH=[env["includedir"]])
 
 SConscript("zlib123/SConscript", exports="env")
 SConscript("lpng1240/SConscript", exports="env")
+SConscript("freetype-2.3.9/SConscript", exports="env")
