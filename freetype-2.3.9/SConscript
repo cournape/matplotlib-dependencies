@@ -21,7 +21,6 @@ src.append(r"builds\win32\ftdebug.c")
 
 freetype = penv.SharedLibrary("freetype", source=src)
 
-ilib = env.Install(env["libdir"], freetype)
-iheaders = env.Install(env["includedir"], [r"include\ft2build.h", r"include\freetype"])
-env.Default(ilib)
-env.Default(iheaders)
+penv.Install(env["libdir"], freetype)
+penv.Install(env["includedir"], "include/ft2build.h")
+penv.Install(env["includedir"], "include/freetype")
