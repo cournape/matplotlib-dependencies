@@ -1,8 +1,10 @@
 from os.path import \
 	join as pjoin
 
-tools = ["msvs", "msvc", "mslink", "mslib"]
-env = DefaultEnvironment(tools=tools)
+env = DefaultEnvironment(TARGET_ARCH="x86_64")
+config = env.Configure()
+assert config.CheckTypeSize("int*") == 8
+config.Finish()
 
 env.Append(CFLAGS=["/MD", "/W3", "/Ox"])
 
