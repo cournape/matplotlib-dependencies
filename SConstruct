@@ -6,7 +6,7 @@ config = env.Configure()
 assert config.CheckTypeSize("int*") == 8
 config.Finish()
 
-env.Append(CFLAGS=["/MD", "/W3", "/Ox"])
+env.Append(CFLAGS=["/MD", "/O1"])
 
 env["prefix"] = "#install"
 env["includedir"] = pjoin(env["prefix"], "include")
