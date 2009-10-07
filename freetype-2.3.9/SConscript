@@ -2,7 +2,7 @@ Import("env")
 
 penv = env.Clone()
 penv.Append(LIBS=["png", "zlib1"])
-penv.Append(CPPDEFINES=["FT2_BUILD_LIBRARY", "_CRT_SECURE_NO_WARNINGS", "WIN32", "DNDEBUG", "_LIB". "MBCS"])
+penv.Append(CPPDEFINES=["FT2_BUILD_LIBRARY", "_CRT_SECURE_NO_WARNINGS", "WIN32", "DNDEBUG", "_LIB", "MBCS"])
 penv.Append(CPPPATH="include")
 penv.Append(CPPDEFINES=["FT_BUILD_DLL"])
 
