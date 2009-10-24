@@ -3,7 +3,17 @@ from os.path import \
 
 env = DefaultEnvironment(TARGET_ARCH="x86_64")
 config = env.Configure()
-assert config.CheckTypeSize("int*") == 8
+res = config.CheckTypeSize("int*")
+if res == 4:
+    print "++++++++++++++++++++++++++"
+    print " 32 bits target "
+    print "++++++++++++++++++++++++++"
+elif res == 8:
+    print "++++++++++++++++++++++++++"
+    print " 64 bits target "
+    print "++++++++++++++++++++++++++"
+else:
+    raise ValueError("Size of pointer is %d ?????" % res)
 config.Finish()
 
 env.Append(CFLAGS=["/MD", "/O1"])
